@@ -85,7 +85,22 @@ void _performSearch(String query) async {
   }
 }
 
+ String _getFormattedPrice(dynamic price) {
+    return '\€ ${price.toStringAsFixed(2)}'; // prijs opmaken als valuta
+  }
 
+  IconData _getIconData(String iconName) {
+    switch (iconName) {
+      case 'bathroom':
+        return Icons.bathtub;
+      case 'bedroom':
+        return Icons.bed;
+      case 'parking':
+        return Icons.local_parking;
+      default:
+        return Icons.help_outline;
+    }
+  }
 
 @override
 Widget build(BuildContext context) {
@@ -143,22 +158,26 @@ Widget build(BuildContext context) {
             ],
           )
               : Expanded(
-            child: ListView.separated(
-              itemCount: _houses.length,
-              itemBuilder: (context, index) {
-                final house = _houses[index];
-                final name = 'Huis ${house['id']}'; // genereer de naam op basis van het ID
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HouseDetailsPage(
-                          house: house,
-                        ),
-                      ),
-                    );
-                  },
+                        child: ListView.separated(
+                          itemCount: _houses.length,
+                          itemBuilder: (context, index) {
+                            final house = _houses[index];
+                            final name = 'Huis ${house['id']}'; // genereer de naam op basis van het ID
+                            final price = _getFormattedPrice(house['price']);
+                            final bathroomCount = house['bathrooms'] ?? 0;
+                            final bedroomCount = house['bedrooms'] ?? 0;
+                            final parkingCount = house['parking'] ?? 0;
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HouseDetailsPage(
+                                      house: house,
+                                    ),
+                                  ),
+                                );
+                              },
                   child: Card(
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
@@ -166,7 +185,7 @@ Widget build(BuildContext context) {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.asset(
-                            'images/search_state_empty.png',
+                            'images/istockphoto-1026205392-612x612.jpg',
                             width: 50.0,
                             height: 50.0,
                           ),
