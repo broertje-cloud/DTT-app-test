@@ -18,7 +18,7 @@ void main() {
   runApp(MyApp());
     Map<String, dynamic> house = {
   
-};
+    };
   HouseDetailsPage houseDetailsPage = HouseDetailsPage(house: house);
   houseDetailsPage.myMethod();
   runApp(MyApp());
@@ -35,10 +35,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'House Search',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        appBarTheme: AppBarTheme(
+          color: Colors.red,
+        ),
       ),
       home: LoadingScreen(),
     );
   }
 }
+
+
+
 
