@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:dtt/screens/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dtt/screens/about_page.dart';
 import '../main.dart';
+
 
 class HouseDetailsPage extends StatelessWidget {
   final Map<String, dynamic> house;
@@ -19,20 +21,6 @@ class HouseDetailsPage extends StatelessWidget {
     final String randomImage = houseImages[random.nextInt(houseImages.length)];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('House Details'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.info),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AboutPage()),
-              );
-            },
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(16.0),
@@ -69,6 +57,7 @@ class HouseDetailsPage extends StatelessWidget {
                   ),
                 ],
               ),
+              Icon(Icons.bathroom),
               SizedBox(height: 8.0),
               Text(
                 'Bathrooms: ${house['bathrooms']}',
@@ -88,6 +77,32 @@ class HouseDetailsPage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+  items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.info),
+                label: 'About',
+              ),
+            ],
+            onTap: (index) {
+              if (index == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              } else if (index == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()),
+                );
+              }
+            },
+          ),
+
     );
   }
 

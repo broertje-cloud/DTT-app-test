@@ -27,7 +27,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return MaterialApp(
       title: 'House Search',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: _buildContent(),
     );
@@ -42,16 +42,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   Widget _buildLoading() {
-    return Scaffold(
-      body: Center(
-        child: Image.asset(
-          'images/load.png',
-          width: 200.0,
-          height: 200.0,
-        ),
+  return Scaffold(
+    backgroundColor: Colors.red, // toegevoegd
+    body: Center(
+      child: Image.asset(
+        'images/DTTLoading.png',
+        width: 200.0,
+        height: 200.0,
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Future<void> _fetchData() async {
     await Future.delayed(Duration(seconds: 3));

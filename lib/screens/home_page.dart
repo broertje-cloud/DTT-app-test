@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../main.dart';
 import 'package:dtt/screens/house_details_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -64,11 +65,11 @@ void _performSearch(String query) async {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text('Geen resultaten gevonden'),
-                content: Text('Er zijn geen resultaten gevonden voor uw zoekopdracht.'),
+                title: const Text('Geen resultaten gevonden'),
+                content: const Text('Er zijn geen resultaten gevonden voor uw zoekopdracht.'),
                 actions: [
                   TextButton(
-                    child: Text('OK'),
+                    child: const Text('OK'),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -105,37 +106,40 @@ void _performSearch(String query) async {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(
-        title: Text('House Search'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.info),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AboutPage()),
-              );
-            },
-          ),
-        ],
+  appBar: AppBar(
+    backgroundColor: Colors.white,
+    title: Text(
+      'DTT real estate',
+      style: TextStyle(
+        color: Colors.black,
       ),
-    body: Container(
-      padding: EdgeInsets.all(16.0),
+    ),
+    centerTitle: false,
+  ),
+    body: Container(     
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           TextField(
-            controller: _searchController,
-            decoration: InputDecoration(
-              labelText: 'Search house here',
-            ),
-            onChanged: (query) {
-              _performSearch(query);
-            },
-          ),
-          SizedBox(height: 16.0),
+                controller: _searchController,
+                style: TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Search house here',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: Icon(Icons.search),
+                ),
+                onChanged: (query) {
+                  _performSearch(query);
+                },
+              ),
+          const SizedBox(height: 16.0),
           _isLoading
-              ? Center(
+              ? const Center(
             child: CircularProgressIndicator(),
           )
               : _houses.isEmpty
@@ -147,8 +151,8 @@ Widget build(BuildContext context) {
                 width: 200.0,
                 height: 200.0,
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'No search results found. Please try another search.',
                 style: TextStyle(
                   fontSize: 18.0,
@@ -162,7 +166,7 @@ Widget build(BuildContext context) {
                           itemCount: _houses.length,
                           itemBuilder: (context, index) {
                             final house = _houses[index];
-                            final name = 'Huis ${house['id']}'; // genereer de naam op basis van het ID
+                            final name = 'huis ${house['id']}'; // genereer de naam op basis van het ID
                             final price = _getFormattedPrice(house['price']);
                             final bathroomCount = house['bathrooms'] ?? 0;
                             final bedroomCount = house['bedrooms'] ?? 0;
@@ -180,46 +184,100 @@ Widget build(BuildContext context) {
                               },
                   child: Card(
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'images/istockphoto-1026205392-612x612.jpg',
-                            width: 50.0,
-                            height: 50.0,
-                          ),
-                          SizedBox(height: 16.0),
-                          Text(
-                            name, // gebruik de gegenereerde naam
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Image.asset(
+                                'images/istockphoto-1026205392-612x612.jpg',
+                                width: 100.0,
+                                height: 100.0,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 8.0),
-                          Text(
-                            house['address'] ?? ' ',
-                            style: TextStyle(
-                              fontSize: 16.0,
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      name, // gebruik de gegenereerde naam
+                                      style: const TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      house['address'] ?? ' ',
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'images/ic_bath.svg',
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        SvgPicture.asset(
+                                          'images/ic_bed.svg',
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+
                   ),
                 );
               },
+              
               separatorBuilder: (context, index) {
-                return index % 10 == 9
-                    ? Divider()
-                    : SizedBox.shrink();
+                return index % 20 == 19
+                    ? const Divider()
+                    : const SizedBox.shrink();
               },
             ),
           ),
         ],
       ),
     ),
+    bottomNavigationBar: BottomNavigationBar(
+  items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.info),
+                label: 'About',
+              ),
+            ],
+            onTap: (index) {
+              if (index == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              } else if (index == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutPage()),
+                );
+              }
+            },
+          ),
   );
 }
 
