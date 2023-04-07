@@ -7,7 +7,15 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dtt/screens/about_page.dart';
 import '../main.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:dtt/models/house_model.dart';
 
+
+void main() {
+  runApp(MyApp());
+  MapSampleState mapSampleState = MapSampleState();
+  mapSampleState.myMethod();
+}
 
 class HouseDetailsPage extends StatelessWidget {
   final Map<String, dynamic> house;
@@ -21,89 +29,106 @@ class HouseDetailsPage extends StatelessWidget {
     final String randomImage = houseImages[random.nextInt(houseImages.length)];
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                randomImage,
-                width: double.infinity,
-                height: 100.0,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                house['address'] ?? 'No name available',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
+  body: SingleChildScrollView(
+    child: Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            randomImage,
+            width: double.infinity,
+            height: 100.0,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(height: 16.0),
+          Text(
+            'Price: \$${house['price']}',
+            style: const TextStyle(fontSize: 18.0),
+          ),
+          Row(
+  children: [
+    const Icon(Icons.king_bed),
+    const SizedBox(width: 2.0),
+    Text(
+      ': ${house['bedrooms']}',
+      style: const TextStyle(fontSize: 18.0),
+    ),
+    const SizedBox(width: 16.0),
+    const Icon(Icons.bathroom),
+    const SizedBox(width: 2.0),
+    Text(
+      ': ${house['bathrooms']}',
+      style: const TextStyle(fontSize: 18.0),
+    ),
+    const SizedBox(width: 16.0),
+    const Icon(Icons.layers),
+    const SizedBox(width: 2.0),
+    Text(
+      ': ${house['layers']}',
+      style: const TextStyle(fontSize: 18.0),
+    ),
+    const SizedBox(width: 16.0),
+    const Icon(Icons.place),
+    const SizedBox(width: 2.0),
+    Text(
+      ': ${house['place']}',
+      style: const TextStyle(fontSize: 18.0),
+    ),
+  ],
+),
+
+          const SizedBox(height: 8.0),
+          Text(
+            'Description: ${house['description']}',
+            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            'Agent: ${house['agent']}',
+            style: const TextStyle(fontSize: 18.0),
+          ),
+          const SizedBox(
+              height: 100,
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(37.77483, -122.41942),
+                  zoom: 12,
                 ),
               ),
-              SizedBox(height: 16.0),
-              Text(
-                'Price: \$${house['price']}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Icon(Icons.king_bed),
-                  SizedBox(width: 8.0),
-                  Text(
-                    'Rooms: ${house['rooms']}',
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                ],
-              ),
-              Icon(Icons.bathroom),
-              SizedBox(height: 8.0),
-              Text(
-                'Bathrooms: ${house['bathrooms']}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                'Description: ${house['description']}',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                'Agent: ${house['agent']}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-            ],
-          ),
-        ),
+            ),
+        ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-  items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.info),
-                label: 'About',
-              ),
-            ],
-            onTap: (index) {
-              if (index == 0) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              } else if (index == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AboutPage()),
-                );
-              }
-            },
-          ),
+    ),
+  ),
+  bottomNavigationBar: BottomNavigationBar(
+    items: const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.info),
+        label: 'About',
+      ),
+    ],
+    
+    onTap: (index) {
+      if (index == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else if (index == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AboutPage()),
+        );
+      }
+    },
+  ),
+);
 
-    );
   }
 
   void myMethod() {}

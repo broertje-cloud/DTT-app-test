@@ -41,6 +41,8 @@ dependencies:
   flutter_svg: ^0.22.0
   http: ^0.13.3
   url_launcher: ^6.1.10
+  cupertino_icons: ^1.0.2
+  google_maps_flutter: ^2.1.1
 
 
 dev_dependencies:
@@ -78,6 +80,8 @@ flutter:
     - images/DTTLoading.png
     - images/ic_bath.svg
     - images/ic_bed.svg
+    - images/ic_layers.svg
+    - images/ic_location.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

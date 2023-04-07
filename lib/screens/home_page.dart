@@ -170,6 +170,8 @@ Widget build(BuildContext context) {
                             final price = _getFormattedPrice(house['price']);
                             final bathroomCount = house['bathrooms'] ?? 0;
                             final bedroomCount = house['bedrooms'] ?? 0;
+                            final layers = house['layers'] ?? 0;
+                            final place = house['place'] ?? 0;
                             final parkingCount = house['parking'] ?? 0;
                             return InkWell(
                               onTap: () {
@@ -204,7 +206,7 @@ Widget build(BuildContext context) {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      name, // gebruik de gegenereerde naam
+                                      price, // gebruik de gegenereerde naam
                                       style: const TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
@@ -223,12 +225,22 @@ Widget build(BuildContext context) {
                                           width: 24.0,
                                           height: 24.0,
                                         ),
-                                        const SizedBox(width: 8.0),
                                         SvgPicture.asset(
                                           'images/ic_bed.svg',
                                           width: 24.0,
                                           height: 24.0,
                                         ),
+                                        SvgPicture.asset(
+                                          'images/ic_layers.svg',
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                        SvgPicture.asset(
+                                          'images/ic_location.svg',
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                      const SizedBox(width: 8.0),
                                       ],
                                     ),
                                   ],
