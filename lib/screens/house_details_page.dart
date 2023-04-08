@@ -10,7 +10,29 @@ import '../main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dtt/models/house_model.dart';
 
+//Deze code definieert de HouseDetailsPage-widget, die de details van een huis weergeeft, zoals de prijs, het aantal slaapkamers en badkamers, de locatie en een beschrijving van het huis. Het toont ook een willekeurige afbeelding van het huis uit een lijst van afbeeldingen en een kaart die de locatie van het huis toont.
 
+// De HouseDetailsPage-widget heeft een MapSampleState-instantie die een methode myMethod() heeft, maar deze wordt niet gebruikt en kan dus worden verwijderd.
+
+// De HouseDetailsPage-widget maakt gebruik van verschillende widgets zoals Scaffold, SingleChildScrollView, Column, Row, Image, Text, Icon, GoogleMap en BottomNavigationBar.
+
+// De Scaffold-widget maakt de basisstructuur van de pagina, zoals de app-balk en het onderste navigatiegedeelte.
+
+// De SingleChildScrollView-widget maakt het mogelijk om door de hele pagina te scrollen, zodat de inhoud niet buiten beeld raakt.
+
+// De Column-widget maakt het mogelijk om de widgets onder elkaar te plaatsen.
+
+// De Row-widget maakt het mogelijk om de widgets naast elkaar te plaatsen.
+
+// De Image-widget toont een willekeurige afbeelding van het huis.
+
+// De Text-widget toont verschillende tekstelementen, zoals de prijs, het aantal slaapkamers en badkamers, de locatie en de beschrijving van het huis.
+
+// De Icon-widget toont verschillende iconen, zoals een bed, badkamer, lagen en locatie, die overeenkomen met de tekst die eronder wordt weergegeven.
+
+// De GoogleMap-widget toont een kaart van de locatie van het huis met behulp van de GoogleMapsFlutter-bibliotheek.
+
+// De BottomNavigationBar-widget maakt het mogelijk om tussen verschillende pagina's te navigeren, zoals de Home-pagina en de About-pagina. De onTap-functie is verantwoordelijk voor het navigeren naar de juiste pagina wanneer er op een item in de navigatiebalk wordt geklikt.
 void main() {
   runApp(MyApp());
   MapSampleState mapSampleState = MapSampleState();

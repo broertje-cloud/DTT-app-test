@@ -9,6 +9,7 @@ import '../main.dart';
 import 'package:dtt/screens/house_details_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+//Er is hier een Flutter-app aanwezig die een onroerendgoedzoekfunctionaliteit bevat. De app maakt gebruik van een API die onroerendgoedgegevens ophaalt en verwerkt deze gegevens vervolgens in een lijstweergave. De gebruiker kan zoeken naar onroerend goed door een zoekopdracht in te voeren in een tekstveld. Als er geen resultaten worden gevonden, toont de app een foutmelding. Als er resultaten worden gevonden, worden deze weergegeven in een lijst. De gebruiker kan op een item in de lijst klikken om meer informatie over het onroerend goed te bekijken in een gedetailleerde weergave.
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -19,6 +20,7 @@ class HomePage extends StatefulWidget {
 class MyWidget extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
+  
 }
 
 class _HomePageState extends State<HomePage> {
@@ -103,12 +105,18 @@ void _performSearch(String query) async {
     }
   }
 
+List<dynamic> _sortHousesByPrice(List<dynamic> houses) {
+  houses.sort((a, b) => a['price'].compareTo(b['price']));
+  return houses;
+}
+
+
 @override
 Widget build(BuildContext context) {
   return Scaffold(
   appBar: AppBar(
     backgroundColor: Colors.white,
-    title: Text(
+    title: const Text(
       'DTT real estate',
       style: TextStyle(
         color: Colors.black,
@@ -116,6 +124,7 @@ Widget build(BuildContext context) {
     ),
     centerTitle: false,
   ),
+  
     body: Container(     
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -137,6 +146,7 @@ Widget build(BuildContext context) {
                   _performSearch(query);
                 },
               ),
+              
           const SizedBox(height: 16.0),
           _isLoading
               ? const Center(
@@ -161,13 +171,15 @@ Widget build(BuildContext context) {
               ),
             ],
           )
-              : Expanded(
+          
+               : Expanded(
                         child: ListView.separated(
                           itemCount: _houses.length,
                           itemBuilder: (context, index) {
                             final house = _houses[index];
                             final name = 'huis ${house['id']}'; // genereer de naam op basis van het ID
                             final price = _getFormattedPrice(house['price']);
+                            _houses = _sortHousesByPrice(_houses);
                             final bathroomCount = house['bathrooms'] ?? 0;
                             final bedroomCount = house['bedrooms'] ?? 0;
                             final layers = house['layers'] ?? 0;
@@ -261,7 +273,7 @@ Widget build(BuildContext context) {
                     : const SizedBox.shrink();
               },
             ),
-          ),
+          ),          
         ],
       ),
     ),
