@@ -9,7 +9,7 @@ import '../main.dart';
 import 'package:dtt/screens/house_details_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-//Er is hier een Flutter-app aanwezig die een onroerendgoedzoekfunctionaliteit bevat. De app maakt gebruik van een API die onroerendgoedgegevens ophaalt en verwerkt deze gegevens vervolgens in een lijstweergave. De gebruiker kan zoeken naar onroerend goed door een zoekopdracht in te voeren in een tekstveld. Als er geen resultaten worden gevonden, toont de app een foutmelding. Als er resultaten worden gevonden, worden deze weergegeven in een lijst. De gebruiker kan op een item in de lijst klikken om meer informatie over het onroerend goed te bekijken in een gedetailleerde weergave.
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();

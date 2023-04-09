@@ -7,7 +7,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//De widget bevat een Scaffold-widget met een bottomNavigationBar en een SingleChildScrollView-widget als body, waarin alle inhoud van de pagina wordt geplaatst. Binnen de SingleChildScrollView zijn er verschillende Text-widgets die de tekst op de pagina weergeven, inclusief een GestureDetector met een afbeelding die de gebruiker doorstuurt naar een website wanneer er op wordt getikt.
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
