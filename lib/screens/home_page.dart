@@ -8,6 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../main.dart';
 import 'package:dtt/screens/house_details_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sizer/sizer.dart';
 
 
 class HomePage extends StatefulWidget {

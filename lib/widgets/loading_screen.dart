@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../main.dart';
 import 'package:dtt/screens/home_page.dart';
+import 'package:sizer/sizer.dart';
+
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -60,5 +62,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     setState(() {
       _isLoading = false;
     });
+    
   }
+  
 }

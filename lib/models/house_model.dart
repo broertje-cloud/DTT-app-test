@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:sizer/sizer.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
