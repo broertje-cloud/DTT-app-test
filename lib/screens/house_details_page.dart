@@ -1,3 +1,6 @@
+// Dit is de import sectie waarin de benodigde packages worden geïmporteerd
+// dart:math wordt geïmporteerd om een willekeurige afbeelding voor het huis te kiezen
+// flutter, http, google_maps_flutter en sizer worden geïmporteerd om het huisgegevens te tonen en de kaart te maken
 import 'dart:math';
 import 'package:dtt/screens/home_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +20,7 @@ void main() {
   MapSampleState mapSampleState = MapSampleState();
   mapSampleState.myMethod();
 }
-
+// Dit is de widget voor de huisdetailspagina die wordt gebruikt om informatie over het huis te tonen
 class HouseDetailsPage extends StatelessWidget {
   final Map<String, dynamic> house;
   final List<String> houseImages = [    'images/classic-house-flower-garden-751996.jpg',    'images/istockphoto-1026205392-612x612.jpg',    'images/istockphoto-1211174464-612x612.jpg',  ];
@@ -30,6 +33,7 @@ class HouseDetailsPage extends StatelessWidget {
     final String randomImage = houseImages[random.nextInt(houseImages.length)];
 
     return Scaffold(
+      // Hier wordt de layout van de huisdetailspagina opgebouwd met informatie over het huis en een kaart van de locatie
   body: SingleChildScrollView(
     child: Container(
       padding: const EdgeInsets.all(16.0),

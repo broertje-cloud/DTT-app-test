@@ -8,6 +8,7 @@ import '../main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sizer/sizer.dart';
 
+// Dit is een Flutter-widget voor de About-pagina van de app, met informatie over het doel van de app en de ontwikkelaars ervan, evenals een link naar de website van de ontwikkelaars. Ook bevat het een bottom navigation bar die het mogelijk maakt om tussen de Home- en About-pagina's te navigeren.
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

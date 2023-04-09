@@ -10,7 +10,7 @@ import 'package:dtt/screens/house_details_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
-
+// Deze code haalt gegevens op van een API en toont een lijst met huizen op basis van de zoekopdracht van de gebruiker
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
